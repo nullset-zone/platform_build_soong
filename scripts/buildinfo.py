@@ -92,14 +92,7 @@ def main():
 
     # ro.build.display.id is shown under Settings -> About Phone
     if option.build_variant == "user":
-      # User builds should show:
-      # release build number or branch.buld_number non-release builds
-
-      # Dev. branches should have DISPLAY_BUILD_NUMBER set
-      if option.display_build_number:
-        print(f"ro.build.display.id?={option.build_id}.{build_number} {option.build_keys}")
-      else:
-        print(f"ro.build.display.id?={option.build_id} {option.build_keys}")
+      print(f"ro.build.display.id?={build_number} {option.build_keys}")
     else:
       # Non-user builds should show detailed build information (See build desc above)
       print(f"ro.build.display.id?={build_desc}")
