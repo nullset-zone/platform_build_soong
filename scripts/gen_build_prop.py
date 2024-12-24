@@ -309,7 +309,6 @@ def append_additional_system_props(args):
     # Target is secure in user builds.
     props.append("ro.secure=1")
     props.append("security.perf_harden=1")
-    props.append("ro.control_privapp_permissions=enforce")
     props.append("persist.security.deny_new_usb=dynamic")
     props.append("net.tethering.noprovisioning=true")
     # System clock update will be skipped if the difference is below this value,
@@ -368,6 +367,8 @@ def append_additional_system_props(args):
 
   # This property is set by flashing debug boot image, so default to false.
   props.append("ro.force.debuggable=0")
+
+  props.append("ro.control_privapp_permissions=enforce")
 
   config["ADDITIONAL_SYSTEM_PROPERTIES"] = props
 
