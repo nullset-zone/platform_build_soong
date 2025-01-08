@@ -310,7 +310,6 @@ def append_additional_system_props(args):
     props.append("ro.secure=1")
     props.append("security.perf_harden=1")
     props.append("persist.security.deny_new_usb=dynamic")
-    props.append("net.tethering.noprovisioning=true")
     # System clock update will be skipped if the difference is below this value,
     # default is 2000 ms as of Android 14.
     props.append("ro.sys.time_detector_update_diff=50")
@@ -369,6 +368,7 @@ def append_additional_system_props(args):
   props.append("ro.force.debuggable=0")
 
   props.append("ro.control_privapp_permissions=enforce")
+  props.append("net.tethering.noprovisioning=true")
 
   config["ADDITIONAL_SYSTEM_PROPERTIES"] = props
 
