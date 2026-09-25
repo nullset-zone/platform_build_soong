@@ -568,6 +568,12 @@ func (b *bootimg) buildPropFile(ctx android.ModuleContext) (android.Path, androi
 	addStr("avb_add_hash_footer_args", "") // TODO(jiyong): add --rollback_index
 	partitionName := proptools.StringDefault(b.commonProperties.Partition_name, b.Name())
 	addStr("partition_name", partitionName)
+	// Required for verity_utils (default avb_mode). Without this, verity_utils
+	// falls back to CalculateDynamicPartitionSize and the AVB footer is not at
+	// the end of BOARD_PVMFWIMAGE_PARTITION_SIZE (stock Pixel pvmfw is 1 MiB).
+	if b.commonProperties.Partition_size != nil {
+		addStr("partition_size", strconv.FormatInt(*b.commonProperties.Partition_size, 10))
+	}
 
 	propFile := android.PathForModuleOut(ctx, "prop")
 	android.WriteFileRule(ctx, propFile, sb.String())
